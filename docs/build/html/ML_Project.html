@@ -1,0 +1,2096 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>APPLICATIONS OF BIG DATA - HOME CREDIT DEFAULT RISK &mdash; HOME CREDIT RISK 9.02.19 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome" href="additionnal/Welcome.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> HOME CREDIT RISK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="additionnal/Welcome.html">Welcome</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">APPLICATIONS OF BIG DATA - HOME CREDIT DEFAULT RISK</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#About-the-Data">About the Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#LIBRARIES">LIBRARIES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#DATASETS">DATASETS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#PART-1:-ML-Models">PART 1: ML Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#PART-2:-MLFlow">PART 2: MLFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#PART-3:-XAI-with-LIME-Method">PART 3: XAI with LIME Method</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HOME CREDIT RISK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>APPLICATIONS OF BIG DATA - HOME CREDIT DEFAULT RISK</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ML_Project.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="APPLICATIONS-OF-BIG-DATA---HOME-CREDIT-DEFAULT-RISK">
+<h1>APPLICATIONS OF BIG DATA - HOME CREDIT DEFAULT RISK<a class="headerlink" href="#APPLICATIONS-OF-BIG-DATA---HOME-CREDIT-DEFAULT-RISK" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://www.kaggle.com/c/home-credit-default-risk/data">https://www.kaggle.com/c/home-credit-default-risk/data</a></p>
+<div class="section" id="About-the-Data">
+<h2>About the Data<a class="headerlink" href="#About-the-Data" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The application_train &amp; application_test informe us about each loan application at Home Credit. Every loan has its own row and is identified by the feature SK_ID_CURR.</p></li>
+</ul>
+<blockquote>
+<div><p>The application_train dataset comes with the TARGET column indicating (0: the loan was repaid | 1: the loan was not repaid)</p>
+</div></blockquote>
+<div class="section" id="LIBRARIES">
+<h3>LIBRARIES<a class="headerlink" href="#LIBRARIES" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="kn">import</span> <span class="nn">mlflow</span>
+<span class="kn">import</span> <span class="nn">mlflow.sklearn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="DATASETS">
+<h3>DATASETS<a class="headerlink" href="#DATASETS" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">url_test</span> <span class="o">=</span> <span class="s2">&quot;C:/Users/carol/Google Drive/BIG DATA/S9/APPLICATIONS OF BIG DATA/ML_PROJECT/Data/application_test.csv&quot;</span>
+<span class="n">url_train</span> <span class="o">=</span> <span class="s2">&quot;C:/Users/carol/Google Drive/BIG DATA/S9/APPLICATIONS OF BIG DATA/ML_PROJECT/Data/application_train.csv&quot;</span>
+
+<span class="n">application_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_test</span><span class="p">)</span>
+<span class="n">application_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">application_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SK_ID_CURR</th>
+      <th>TARGET</th>
+      <th>NAME_CONTRACT_TYPE</th>
+      <th>CODE_GENDER</th>
+      <th>FLAG_OWN_CAR</th>
+      <th>FLAG_OWN_REALTY</th>
+      <th>CNT_CHILDREN</th>
+      <th>AMT_INCOME_TOTAL</th>
+      <th>AMT_CREDIT</th>
+      <th>AMT_ANNUITY</th>
+      <th>...</th>
+      <th>FLAG_DOCUMENT_18</th>
+      <th>FLAG_DOCUMENT_19</th>
+      <th>FLAG_DOCUMENT_20</th>
+      <th>FLAG_DOCUMENT_21</th>
+      <th>AMT_REQ_CREDIT_BUREAU_HOUR</th>
+      <th>AMT_REQ_CREDIT_BUREAU_DAY</th>
+      <th>AMT_REQ_CREDIT_BUREAU_WEEK</th>
+      <th>AMT_REQ_CREDIT_BUREAU_MON</th>
+      <th>AMT_REQ_CREDIT_BUREAU_QRT</th>
+      <th>AMT_REQ_CREDIT_BUREAU_YEAR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100002</td>
+      <td>1</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>202500.0</td>
+      <td>406597.5</td>
+      <td>24700.5</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100003</td>
+      <td>0</td>
+      <td>Cash loans</td>
+      <td>F</td>
+      <td>N</td>
+      <td>N</td>
+      <td>0</td>
+      <td>270000.0</td>
+      <td>1293502.5</td>
+      <td>35698.5</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100004</td>
+      <td>0</td>
+      <td>Revolving loans</td>
+      <td>M</td>
+      <td>Y</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>67500.0</td>
+      <td>135000.0</td>
+      <td>6750.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100006</td>
+      <td>0</td>
+      <td>Cash loans</td>
+      <td>F</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>135000.0</td>
+      <td>312682.5</td>
+      <td>29686.5</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100007</td>
+      <td>0</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>121500.0</td>
+      <td>513000.0</td>
+      <td>21865.5</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 122 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">application_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SK_ID_CURR</th>
+      <th>NAME_CONTRACT_TYPE</th>
+      <th>CODE_GENDER</th>
+      <th>FLAG_OWN_CAR</th>
+      <th>FLAG_OWN_REALTY</th>
+      <th>CNT_CHILDREN</th>
+      <th>AMT_INCOME_TOTAL</th>
+      <th>AMT_CREDIT</th>
+      <th>AMT_ANNUITY</th>
+      <th>AMT_GOODS_PRICE</th>
+      <th>...</th>
+      <th>FLAG_DOCUMENT_18</th>
+      <th>FLAG_DOCUMENT_19</th>
+      <th>FLAG_DOCUMENT_20</th>
+      <th>FLAG_DOCUMENT_21</th>
+      <th>AMT_REQ_CREDIT_BUREAU_HOUR</th>
+      <th>AMT_REQ_CREDIT_BUREAU_DAY</th>
+      <th>AMT_REQ_CREDIT_BUREAU_WEEK</th>
+      <th>AMT_REQ_CREDIT_BUREAU_MON</th>
+      <th>AMT_REQ_CREDIT_BUREAU_QRT</th>
+      <th>AMT_REQ_CREDIT_BUREAU_YEAR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100001</td>
+      <td>Cash loans</td>
+      <td>F</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>135000.0</td>
+      <td>568800.0</td>
+      <td>20560.5</td>
+      <td>450000.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100005</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>99000.0</td>
+      <td>222768.0</td>
+      <td>17370.0</td>
+      <td>180000.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>100013</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>Y</td>
+      <td>Y</td>
+      <td>0</td>
+      <td>202500.0</td>
+      <td>663264.0</td>
+      <td>69777.0</td>
+      <td>630000.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>100028</td>
+      <td>Cash loans</td>
+      <td>F</td>
+      <td>N</td>
+      <td>Y</td>
+      <td>2</td>
+      <td>315000.0</td>
+      <td>1575000.0</td>
+      <td>49018.5</td>
+      <td>1575000.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>100038</td>
+      <td>Cash loans</td>
+      <td>M</td>
+      <td>Y</td>
+      <td>N</td>
+      <td>1</td>
+      <td>180000.0</td>
+      <td>625500.0</td>
+      <td>32067.0</td>
+      <td>625500.0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 121 columns</p>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="PART-1:-ML-Models">
+<h1>PART 1: ML Models<a class="headerlink" href="#PART-1:-ML-Models" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>First, I will try to know th percentage of each column and sort it by descending on application_train and application_test.</p></li>
+<li><p>Then I dropped columns having percent &gt; 50</p></li>
+</ul>
+<ul class="simple">
+<li><p>application_train</p></li>
+</ul>
+<hr class="docutils" />
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#Test the application_train set</span>
+<span class="k">def</span> <span class="nf">missing_values_table</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+        <span class="n">mis_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">mis_val_percent</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">mis_val_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">mis_val</span><span class="p">,</span> <span class="n">mis_val_percent</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">mis_val_table_ren_columns</span> <span class="o">=</span> <span class="n">mis_val_table</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="s1">&#39;Missing Values&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s1">&#39;</span><span class="si">% o</span><span class="s1">f Total Values&#39;</span><span class="p">})</span>
+        <span class="n">mis_val_table_ren_columns</span> <span class="o">=</span> <span class="n">mis_val_table_ren_columns</span><span class="p">[</span>
+            <span class="n">mis_val_table_ren_columns</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+        <span class="s1">&#39;</span><span class="si">% o</span><span class="s1">f Total Values&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mis_val_table_ren_columns</span>
+
+<span class="n">missing_values_table_train</span> <span class="o">=</span> <span class="n">missing_values_table</span><span class="p">(</span><span class="n">application_train</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">missing_values_table_train</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----------------------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Your selected dataframe has &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">application_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; columns.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;There are &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">missing_values_table_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span>
+              <span class="s2">&quot; columns that have missing values.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Missing Values</th>
+      <th>% of Total Values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>COMMONAREA_MEDI</th>
+      <td>214865</td>
+      <td>69.9</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_AVG</th>
+      <td>214865</td>
+      <td>69.9</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_MODE</th>
+      <td>214865</td>
+      <td>69.9</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MEDI</th>
+      <td>213514</td>
+      <td>69.4</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MODE</th>
+      <td>213514</td>
+      <td>69.4</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_AVG</th>
+      <td>213514</td>
+      <td>69.4</td>
+    </tr>
+    <tr>
+      <th>FONDKAPREMONT_MODE</th>
+      <td>210295</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MODE</th>
+      <td>210199</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MEDI</th>
+      <td>210199</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_AVG</th>
+      <td>210199</td>
+      <td>68.4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-----------------------------------------------------------------------------
+
+Your selected dataframe has 122 columns.
+There are 67 columns that have missing values.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dropped_elmt_train</span> <span class="o">=</span> <span class="n">missing_values_table_train</span><span class="p">[</span><span class="n">missing_values_table_train</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">% o</span><span class="s1">f Total Values&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">application_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">dropped_elmt_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Your selected dataframe has now &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">application_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; columns.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;There are &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dropped_elmt_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span>
+              <span class="s2">&quot; columns dropped.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Your selected dataframe has now 81 columns.
+There are 41 columns dropped.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#There are more F gender in the column, so I decide to replace XNA by F gender</span>
+<span class="n">display</span><span class="p">(</span><span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----------------------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;XNA&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;CODE_GENDER&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+F      202448
+M      105059
+XNA         4
+Name: CODE_GENDER, dtype: int64
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+-----------------------------------------------------------------------------
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+F    202452
+M    105059
+Name: CODE_GENDER, dtype: int64
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>application_test</p></li>
+</ul>
+<hr class="docutils" />
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#Test the application_train set</span>
+<span class="k">def</span> <span class="nf">missing_values_table</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+        <span class="n">mis_val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">mis_val_percent</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+        <span class="n">mis_val_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">mis_val</span><span class="p">,</span> <span class="n">mis_val_percent</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">mis_val_table_ren_columns</span> <span class="o">=</span> <span class="n">mis_val_table</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="s1">&#39;Missing Values&#39;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s1">&#39;</span><span class="si">% o</span><span class="s1">f Total Values&#39;</span><span class="p">})</span>
+        <span class="n">mis_val_table_ren_columns</span> <span class="o">=</span> <span class="n">mis_val_table_ren_columns</span><span class="p">[</span>
+            <span class="n">mis_val_table_ren_columns</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+        <span class="s1">&#39;</span><span class="si">% o</span><span class="s1">f Total Values&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mis_val_table_ren_columns</span>
+
+<span class="n">missing_values_table_test</span> <span class="o">=</span> <span class="n">missing_values_table</span><span class="p">(</span><span class="n">application_test</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">missing_values_table_test</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----------------------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Your selected dataframe has &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">application_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; columns.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;There are &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">missing_values_table_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span>
+              <span class="s2">&quot; columns that have missing values.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Missing Values</th>
+      <th>% of Total Values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>COMMONAREA_MODE</th>
+      <td>33495</td>
+      <td>68.7</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_MEDI</th>
+      <td>33495</td>
+      <td>68.7</td>
+    </tr>
+    <tr>
+      <th>COMMONAREA_AVG</th>
+      <td>33495</td>
+      <td>68.7</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MEDI</th>
+      <td>33347</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_AVG</th>
+      <td>33347</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>NONLIVINGAPARTMENTS_MODE</th>
+      <td>33347</td>
+      <td>68.4</td>
+    </tr>
+    <tr>
+      <th>FONDKAPREMONT_MODE</th>
+      <td>32797</td>
+      <td>67.3</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MODE</th>
+      <td>32780</td>
+      <td>67.2</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_MEDI</th>
+      <td>32780</td>
+      <td>67.2</td>
+    </tr>
+    <tr>
+      <th>LIVINGAPARTMENTS_AVG</th>
+      <td>32780</td>
+      <td>67.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-----------------------------------------------------------------------------
+
+Your selected dataframe has 121 columns.
+There are 64 columns that have missing values.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dropped_elmt_test</span> <span class="o">=</span> <span class="n">missing_values_table_test</span><span class="p">[</span><span class="n">missing_values_table_test</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">% o</span><span class="s1">f Total Values&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">application_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">dropped_elmt_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Your selected dataframe has now &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">application_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot; columns.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;There are &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dropped_elmt_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span>
+              <span class="s2">&quot; columns dropped.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Your selected dataframe has now 92 columns.
+There are 29 columns dropped.
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>Align the datasets</p></li>
+</ul>
+<hr class="docutils" />
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#application_train = pd.read_csv(url_train)</span>
+<span class="n">TARGET</span> <span class="o">=</span> <span class="n">application_train</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span>
+<span class="n">application_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape before align the data&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Train Shape :&quot;</span><span class="p">,</span> <span class="n">application_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Test Shape :&quot;</span><span class="p">,</span> <span class="n">application_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_____________________________________________________________________________________________&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="c1">#-------------------------------------------------------------------------------</span>
+<span class="c1">#Here, I align the train set and test to have the same columns</span>
+<span class="n">app_train</span><span class="p">,</span> <span class="n">app_test</span> <span class="o">=</span> <span class="n">application_train</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">application_test</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">app_train</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TARGET</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape after align the data&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Train Shape :&quot;</span><span class="p">,</span> <span class="n">app_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Test Shape :&quot;</span><span class="p">,</span> <span class="n">app_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Shape before align the data
+
+-&gt; Train Shape : (307511, 80)
+-&gt; Test Shape : (48744, 92)
+
+_____________________________________________________________________________________________
+
+Shape after align the data
+
+-&gt; Train Shape : (307511, 81)
+-&gt; Test Shape : (48744, 80)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>Drop row missing values</p></li>
+</ul>
+<hr class="docutils" />
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#The result in the previous lign shows that there are some missing values in the data</span>
+<span class="c1">#So I decide to drop row</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape before removing missing values on row&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Train Shape :&quot;</span><span class="p">,</span> <span class="n">app_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Test Shape :&quot;</span><span class="p">,</span> <span class="n">app_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">app_train</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">app_test</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_____________________________________________________________________________________________&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape after removing missing values&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Train Shape :&quot;</span><span class="p">,</span> <span class="n">app_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Test Shape :&quot;</span><span class="p">,</span> <span class="n">app_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Shape before removing missing values on row
+
+-&gt; Train Shape : (307511, 81)
+-&gt; Test Shape : (48744, 80)
+
+_____________________________________________________________________________________________
+
+Shape after removing missing values
+
+-&gt; Train Shape : (84575, 81)
+-&gt; Test Shape : (13858, 80)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#First, I will take a look at the TARGET column on application_train set</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">app_train</span><span class="o">.</span><span class="n">TARGET</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">app_train</span><span class="o">.</span><span class="n">TARGET</span> <span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">app_train</span><span class="p">,</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Target classes&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count of each Target class&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/ML_Project_23_1.png" src="_images/ML_Project_23_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Here, I will take a look at the columns types of the dataset.</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">app_train</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">,</span> <span class="s1">&#39;Int&#39;</span><span class="p">,</span> <span class="s1">&#39;Object&#39;</span><span class="p">]</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="n">dt</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="s1">&#39;yellowgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">]</span>
+<span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># explode 1st slicce</span>
+
+<span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">explode</span><span class="o">=</span><span class="n">explode</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+<span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">startangle</span><span class="o">=</span><span class="mi">140</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+int64      41
+float64    27
+object     13
+dtype: int64
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/ML_Project_24_2.png" src="_images/ML_Project_24_2.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+
+<span></span><span class="c1">#I will highlight the columns</span>
+<span class="c1">#print(application_train.select_dtypes(include=[&#39;object&#39;]))</span>
+
+<span class="c1">#As we can see, there are 13,1 % of objects columns. Most Machine Learning can not deal with object type, so we need to</span>
+<span class="c1">#do something in order to able use it .</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">app_train</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="o">.</span><span class="n">nunique</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1">#print(f)</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+
+<span class="n">bar_x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">]</span>
+
+<span class="n">bar_height</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span>
+<span class="n">bar_tick_label</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">index</span>
+<span class="n">bar_label</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">]</span>
+<span class="n">bar_color</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;gold&quot;</span><span class="p">,</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span><span class="s2">&quot;gold&quot;</span><span class="p">,</span> <span class="s2">&quot;gold&quot;</span><span class="p">,</span><span class="s2">&quot;crimson&quot;</span><span class="p">]</span>
+<span class="n">bar_plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">bar_x</span><span class="p">,</span> <span class="n">bar_height</span><span class="p">,</span> <span class="n">tick_label</span><span class="o">=</span><span class="n">bar_tick_label</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bar_color</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">autolabel</span><span class="p">(</span><span class="n">rects</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">rect</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bar_plot</span><span class="p">):</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span><span class="o">/</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.05</span><span class="o">*</span><span class="n">height</span><span class="p">,</span>
+                <span class="n">bar_label</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span>
+                <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">autolabel</span><span class="p">(</span><span class="n">bar_plot</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">65</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/ML_Project_25_0.png" src="_images/ML_Project_25_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#Here, we have two categorical variables types, fisrt with 2 unique categories and the second more than 2 categories</span>
+
+<span class="c1">#1. LabelEncoder</span>
+<span class="c1">#application_train = pd.read_csv(url_train)</span>
+
+<span class="k">def</span> <span class="nf">LE</span> <span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">Label</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="p">:</span>
+                <span class="n">Label</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">Label</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1">#2. One-Hot-encoding</span>
+<span class="k">def</span> <span class="nf">OHE</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">categorie_variable_column</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="p">:</span>
+                <span class="n">categorie_variable_column</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+
+    <span class="n">one_hot_encoding</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">categorie_variable_column</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">categorie_variable_column</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">one_hot_encoding</span><span class="p">)</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Shape :&quot;</span><span class="p">,</span> <span class="n">df_new</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_new</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape before the labelization&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Train shape :&quot;</span><span class="p">,</span> <span class="n">app_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Test shape :&quot;</span><span class="p">,</span> <span class="n">app_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_____________________________________________________________________________________________&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape after the labelization&quot;</span><span class="p">)</span>
+<span class="c1">#Application train dataset</span>
+<span class="n">app_train_LE</span> <span class="o">=</span> <span class="n">LE</span><span class="p">(</span><span class="n">app_train</span><span class="p">)</span>
+<span class="n">app_train_</span> <span class="o">=</span> <span class="n">OHE</span><span class="p">(</span><span class="n">app_train_LE</span><span class="p">)</span>
+
+<span class="c1">#Application test dataset</span>
+<span class="n">app_test_LE</span> <span class="o">=</span> <span class="n">LE</span><span class="p">(</span><span class="n">app_test</span><span class="p">)</span>
+<span class="n">app_test_</span> <span class="o">=</span> <span class="n">OHE</span><span class="p">(</span><span class="n">app_test_LE</span><span class="p">)</span>
+
+<span class="c1">#As we want the train set and test to have the same columns</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">app_train_</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span>
+
+<span class="n">app_train</span><span class="p">,</span> <span class="n">app_test</span> <span class="o">=</span> <span class="n">app_train_</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">app_test_</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">app_train</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_____________________________________________________________________________________________&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape after align the datasets to have the same columns&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Train shape :&quot;</span><span class="p">,</span> <span class="n">app_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&gt; Test shape :&quot;</span><span class="p">,</span> <span class="n">app_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Shape before the labelization
+-&gt; Train shape : (84575, 81)
+-&gt; Test shape : (13858, 80)
+
+_____________________________________________________________________________________________
+
+Shape after the labelization
+-&gt; Shape : (84575, 183)
+-&gt; Shape : (13858, 179)
+
+_____________________________________________________________________________________________
+
+Shape after align the datasets to have the same columns
+-&gt; Train shape : (84575, 180)
+-&gt; Test shape : (13858, 179)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">app_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;TARGET&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">app_train</span><span class="p">[</span><span class="s1">&#39;TARGET&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=.</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">xgboost.sklearn</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="n">model_xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">subsample</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">train_model_xgb</span> <span class="o">=</span> <span class="n">model_xgb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">prediction_xgb</span> <span class="o">=</span> <span class="n">train_model_xgb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1">#Let&#39;s print the report.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model XGboost Report&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_xgb</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_____________________________________________________________________________________________&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="c1">#Let&#39;s use accuracy score</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy for model : </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_xgb</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Model XGboost Report
+
+              precision    recall  f1-score   support
+
+           0       0.93      1.00      0.96     15660
+           1       0.62      0.00      0.01      1255
+
+    accuracy                           0.93     16915
+   macro avg       0.78      0.50      0.48     16915
+weighted avg       0.90      0.93      0.89     16915
+
+
+_____________________________________________________________________________________________
+
+Accuracy for model : 92.59 %
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">model_rfc</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">train_model_rfc</span> <span class="o">=</span> <span class="n">model_rfc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">prediction_rfc</span> <span class="o">=</span> <span class="n">train_model_rfc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model Random Forest Report&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_rfc</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_____________________________________________________________________________________________&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="c1">#Let&#39;s use accuracy score</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy for Random Forest Model: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_rfc</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Model Random Forest Report
+
+              precision    recall  f1-score   support
+
+           0       0.93      1.00      0.96     15660
+           1       0.00      0.00      0.00      1255
+
+    accuracy                           0.93     16915
+   macro avg       0.46      0.50      0.48     16915
+weighted avg       0.86      0.93      0.89     16915
+
+
+_____________________________________________________________________________________________
+
+Accuracy for Random Forest Model: 92.58 %
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+
+<span class="n">model_gbc</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span>
+<span class="n">train_model_gbc</span> <span class="o">=</span> <span class="n">model_gbc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">prediction_gbc</span> <span class="o">=</span> <span class="n">train_model_gbc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Model Gradient Boosting Report&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_gbc</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;_____________________________________________________________________________________________&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="c1">#Let&#39;s use accuracy score</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy for Random Forest Model: </span><span class="si">%.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_gbc</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Model Gradient Boosting Report
+
+              precision    recall  f1-score   support
+
+           0       0.93      1.00      0.96     15660
+           1       0.54      0.01      0.02      1255
+
+    accuracy                           0.93     16915
+   macro avg       0.73      0.51      0.49     16915
+weighted avg       0.90      0.93      0.89     16915
+
+
+_____________________________________________________________________________________________
+
+Accuracy for Random Forest Model: 92.59 %
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="PART-2:-MLFlow">
+<h1>PART 2: MLFlow<a class="headerlink" href="#PART-2:-MLFlow" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="http://localhost:5000">http://localhost:5000</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="k">def</span> <span class="nf">eval_metrics</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">pred</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">return</span> <span class="n">rmse</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">r2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">mlflow.xgboost</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># enable auto logging</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">xgboost</span><span class="o">.</span><span class="n">autolog</span><span class="p">()</span>
+
+    <span class="c1">#mlflow.end_run()</span>
+
+    <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+
+        <span class="n">model_xgb_mlflow</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">subsample</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">train_model_xgb_mlflow</span> <span class="o">=</span> <span class="n">model_xgb_mlflow</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+        <span class="c1">#Evaluation model</span>
+        <span class="n">prediction_xgb_mlflow</span> <span class="o">=</span> <span class="n">train_model_xgb_mlflow</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">rmse_xgb</span><span class="p">,</span> <span class="n">mae_xgb</span><span class="p">,</span> <span class="n">r2_xgb</span><span class="p">)</span> <span class="o">=</span> <span class="n">eval_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_xgb_mlflow</span><span class="p">)</span>
+        <span class="n">acc_xgb</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_xgb_mlflow</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+        <span class="c1"># Print out metrics</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metrics for XGBoost:&quot;</span> <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| RMSE | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">rmse_xgb</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| MAE  | </span><span class="si">%1.1f%%</span><span class="s2">  |&quot;</span> <span class="o">%</span> <span class="n">mae_xgb</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| R2   | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">r2_xgb</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| ACC  | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">acc_xgb</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+        <span class="c1"># Log parameter, metrics, and model to MLflow</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;rmse&quot;</span><span class="p">,</span> <span class="n">rmse_xgb</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="n">r2_xgb</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;mae&quot;</span><span class="p">,</span> <span class="n">mae_xgb</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">acc_xgb</span><span class="p">)</span>
+
+
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">log_model</span><span class="p">(</span><span class="n">model_xgb_mlflow</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model saved in run </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">active_run</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_uuid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Metrics for XGBoost:
+_______________
+| RMSE | 27.2% |
+_______________
+| MAE  | 7.4%  |
+_______________
+| R2   | -7.8% |
+_______________
+| ACC  | 92.6% |
+_______________
+
+Model saved in run cfb3cbd82c264b069dd43c02c5ab07aa
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">import</span> <span class="nn">mlflow</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># enable auto logging</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">autolog</span><span class="p">()</span>
+
+    <span class="c1">#mlflow.end_run()</span>
+
+    <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+
+        <span class="n">model_rdf_mlflow</span> <span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">()</span>
+        <span class="n">train_model_rdf_mlflow</span> <span class="o">=</span> <span class="n">model_rdf_mlflow</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+        <span class="c1">#Evaluation model</span>
+        <span class="n">prediction_rdf_mlflow</span> <span class="o">=</span> <span class="n">train_model_rdf_mlflow</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">rmse_rdf</span><span class="p">,</span> <span class="n">mae_rdf</span><span class="p">,</span> <span class="n">r2_rdf</span><span class="p">)</span> <span class="o">=</span> <span class="n">eval_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_rdf_mlflow</span><span class="p">)</span>
+        <span class="n">acc_rdf</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_rdf_mlflow</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+        <span class="c1"># Print out metrics</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metrics for Random Forest:&quot;</span> <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| RMSE | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">rmse_rdf</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| MAE  | </span><span class="si">%1.1f%%</span><span class="s2">  |&quot;</span> <span class="o">%</span> <span class="n">mae_rdf</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| R2   | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">r2_rdf</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| ACC  | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">acc_rdf</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+        <span class="c1"># Log parameter, metrics, and model to MLflow</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;rmse&quot;</span><span class="p">,</span> <span class="n">rmse_rdf</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="n">r2_rdf</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;mae&quot;</span><span class="p">,</span> <span class="n">mae_rdf</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">acc_rdf</span><span class="p">)</span>
+
+
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">log_model</span><span class="p">(</span><span class="n">model_rdf_mlflow</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model saved in run </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">active_run</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_uuid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\carol\anaconda3\envs\ML_conda_env\lib\site-packages\ipykernel\ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+  and should_run_async(code)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Metrics for Random Forest:
+_______________
+| RMSE | 27.2% |
+_______________
+| MAE  | 7.4%  |
+_______________
+| R2   | -8.0% |
+_______________
+| ACC  | 92.6% |
+_______________
+
+Model saved in run 189fa4243eb947f7a7da2ae550e771cf
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+<span class="kn">import</span> <span class="nn">mlflow</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># enable auto logging</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">autolog</span><span class="p">()</span>
+
+    <span class="c1">#mlflow.end_run()</span>
+
+    <span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+
+        <span class="n">model_gbc_mlflow</span> <span class="o">=</span><span class="n">GradientBoostingClassifier</span><span class="p">()</span>
+        <span class="n">train_model_gbc_mlflow</span> <span class="o">=</span> <span class="n">model_gbc_mlflow</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+        <span class="c1">#Evaluation model</span>
+        <span class="n">prediction_gbc_mlflow</span> <span class="o">=</span> <span class="n">train_model_gbc_mlflow</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">rmse_gbc</span><span class="p">,</span> <span class="n">mae_gbc</span><span class="p">,</span> <span class="n">r2_gbc</span><span class="p">)</span> <span class="o">=</span> <span class="n">eval_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_rdf_mlflow</span><span class="p">)</span>
+        <span class="n">acc_gbc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">prediction_gbc_mlflow</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+        <span class="c1"># Print out metrics</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metrics for Gradient Boosting:&quot;</span> <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| RMSE | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">rmse_gbc</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| MAE  | </span><span class="si">%1.1f%%</span><span class="s2">  |&quot;</span> <span class="o">%</span> <span class="n">mae_gbc</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| R2   | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">r2_gbc</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;| ACC  | </span><span class="si">%1.1f%%</span><span class="s2"> |&quot;</span> <span class="o">%</span> <span class="n">acc_gbc</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_______________&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+        <span class="c1"># Log parameter, metrics, and model to MLflow</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;rmse&quot;</span><span class="p">,</span> <span class="n">rmse_gbc</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="n">r2_gbc</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;mae&quot;</span><span class="p">,</span> <span class="n">mae_gbc</span><span class="p">)</span>
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;acc&quot;</span><span class="p">,</span> <span class="n">acc_gbc</span><span class="p">)</span>
+
+
+        <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">log_model</span><span class="p">(</span><span class="n">model_rdf_mlflow</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model saved in run </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">active_run</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">run_uuid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Metrics for Gradient Boosting:
+_______________
+| RMSE | 27.2% |
+_______________
+| MAE  | 7.4%  |
+_______________
+| R2   | -8.0% |
+_______________
+| ACC  | 92.6% |
+_______________
+
+Model saved in run d52c814744f64363b676dc93667d5677
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="PART-3:-XAI-with-LIME-Method">
+<h1>PART 3: XAI with LIME Method<a class="headerlink" href="#PART-3:-XAI-with-LIME-Method" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="additionnal/Welcome.html" class="btn btn-neutral float-left" title="Welcome" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Caroline AZEUFACK
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
